@@ -1,0 +1,55 @@
+public class Bank {
+    private final Account[] listOfAccounts;
+    private int accounts;
+
+    public Bank(int limitOfAcc) {
+        listOfAccounts = new Account[limitOfAcc];
+        accounts = 0; // array starts from 0, we will increase this later to add to the array.
+    }
+
+    public void createAccount(int accountNumber) {
+        Account account = new Account(accountNumber, 0);
+        // new acc is made, and the balance it holds is 0.
+        // the acc will be initialized in the bank,
+        // but the info will be made by the user.
+        listOfAccounts[accounts] = account;
+        accounts++;
+
+    }
+
+    public void deposit(int accountNumber, double amount) {
+        for (int x = 0; x < accounts; x++) {
+            if (accountNumber == listOfAccounts[x].AccountNumber()) { // if the acc num matches,
+                // the user can deposit an amount.
+                listOfAccounts[x].deposit(amount);
+                return; // gives back our value
+            }
+        }
+
+        System.out.println("Error 404! Your account was not found! Please make sure you entered the correct number.");
+        System.out.println("If you don't have an account, please create one.");
+    }
+
+    public void withdraw(int accountNumber, double amount) { // follow same procedure for deposit
+        for (int x = 0; x < accounts; x++) {
+            if (accountNumber == listOfAccounts[x].AccountNumber()) {
+                listOfAccounts[x].withdraw(amount);
+                return;
+            }
+        }
+        System.out.println("Error 404! Your account was not found! Please make sure you entered the correct number.");
+        System.out.println("If you don't have an account, please create one.");
+    }
+
+    public void checkAccountBalance(int accountNumber) { // we only need acc num to see the balance
+        // state the same method to still get a matched/valid acc to fetch our info
+        for (int x = 0; x < accounts; x++) {
+            if (accountNumber == listOfAccounts[x].AccountNumber()) {
+                listOfAccounts[x].checkBalance();
+                return;
+            }
+        }
+        System.out.println("Error 404! Your account was not found! Please make sure you entered the correct number.");
+        System.out.println("If you don't have an account, please create one.");
+    }
+}
