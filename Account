@@ -1,0 +1,34 @@
+public class Account {
+
+    private final int accountNumber;
+    private double balance;
+
+    public Account(int accountNumber, double balance){
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // using double amount will allow us to manipulate depositing and withdrawing more easily.
+    public void deposit(double amount){
+        balance += amount; // compound addition to add to our balance -- keeps the balance accurate
+    }
+
+    public void withdraw(double amount){
+        if(balance >= amount){ // cannot withdraw more than what we have
+            balance -= amount; // compound subtraction to subtract from our balance -- keeps the balance accurate
+        }
+        else{
+            System.out.println("Insufficient funds");
+        }
+    }
+
+    public void checkBalance(){
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Balance: $" + balance);
+    }
+
+    public int AccountNumber(){ // this will be called if the user wants to make a deposit or withdraw
+        // in a specific account
+        return accountNumber;
+    }
+}
