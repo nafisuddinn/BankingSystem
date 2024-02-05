@@ -1,0 +1,48 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+        // we will make this user oriented with scanner class. everything will be done
+        // through the terminal
+        Bank bank = new Bank(100); // we create up to 100 accounts
+        while (true) { // needed to make a while statement, or else the program stops running after one command
+            System.out.println("Please choose an action: Create," +
+                    " Deposit, Withdraw, Check Balance, or Exit");
+            String answer = keyboard.next();
+            if (answer.equalsIgnoreCase("create")) {
+                System.out.println("Enter an account number: ");
+                int accountNumber = keyboard.nextInt(); // this user inputted number will be the created acc number
+                bank.createAccount(accountNumber); // <- the number was assigned here
+                System.out.println("Your account has been created!");
+            }
+
+            if (answer.equalsIgnoreCase("deposit")) {
+                System.out.println("Please enter your account number: ");
+                int accountNumber = keyboard.nextInt(); // the created acc num has to match one that was added into the array
+                System.out.println("Enter the amount you'd like to deposit: ");
+                double amount = keyboard.nextDouble();
+                bank.deposit(accountNumber, amount);
+            }
+
+            if (answer.equalsIgnoreCase("withdraw")) {
+                System.out.println("Please enter your account number: ");
+                int accountNumber = keyboard.nextInt();
+                System.out.println("Please enter the amount you'd like to withdraw: ");
+                double amount = keyboard.nextDouble();
+                bank.withdraw(accountNumber, amount);
+            }
+
+            if (answer.equalsIgnoreCase("check")) {
+                System.out.println("Please enter your account number: ");
+                int accountNumber = keyboard.nextInt();
+                bank.checkAccountBalance(accountNumber);
+            }
+            if(answer.equalsIgnoreCase("exit")){
+                System.exit(0); // needed to add an exit system or else
+                // the system won't stop.
+            }
+
+
+        }
+    }
+}
